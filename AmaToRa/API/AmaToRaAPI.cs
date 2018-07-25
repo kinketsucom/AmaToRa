@@ -31,10 +31,14 @@ namespace AmaToRa.API {
 
         public class AmaData {
             public string title;
-            public string title_over_flag = "";
+            public string title_over_flag = "なし";
             public string[] pic_url = new string[4];
+            public string[] pic_location = new string[4];
             public int price = 0;
             public string detail = "";
+            public string detail_over_flag = "なし";
+            public string amazon_url = "";
+
         }
 
 
@@ -59,6 +63,7 @@ namespace AmaToRa.API {
             xpath = "//*[@class='a-button a-button-thumbnail a-button-toggle']/span/span/img";
             var collection = doc.DocumentNode.SelectNodes(xpath);
             for(int i = 0; i < 3; i++) {
+                if (collection.Count <= i) break;
                 if (!string.IsNullOrEmpty(collection[i].Attributes["src"].Value)) {
                     data.pic_url[i+1] = collection[i].Attributes["src"].Value.Replace("SS40","SL1000");
                 }
@@ -74,9 +79,41 @@ namespace AmaToRa.API {
             collection.RemoveAt(0);
             foreach(var val in collection) {
                 data.detail += val.InnerHtml.Replace("<span class=\"a-list-item\"> ","").Replace("\n","").Replace("\t","");
-            }            
+            }
+            if (data.detail.Length > 1000) { data.detail_over_flag = (data.detail.Length - 1000).ToString(); }
+
+
             return data;
         }
+
+        public void DataToExcel(List<AmaData> data_list ) {
+            //商品名
+            //商品の説明
+            //商品画像１～４
+
+            //カテゴリー１～３
+
+            //サイズ（基本なしでいい）
+
+            //ブランド（基本なしでいい）
+
+            //配送料の負担
+            //送料込み(あなたが負担)
+
+            //配送の方法
+            //未定
+
+            //商品の状態
+            //新品、未使用
+
+            //発送元の地域
+            //京都
+
+            //発送までの日数
+            //1〜2日で発送
+
+        }
+
 
 
         //FrilAPIをGetでたたく
