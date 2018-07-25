@@ -1,0 +1,14 @@
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\AmaToRa.exe.config
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\AmaToRa.exe
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\AmaToRa.pdb
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.csprojResolveAssemblyReference.cache
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.MainForm.resources
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.Properties.Resources.resources
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.csproj.GenerateResource.cache
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.csproj.CoreCompileInputs.cache
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.exe
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.pdb
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\HtmlAgilityPack.dll
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\bin\Debug\HtmlAgilityPack.xml
+C:\Users\sekib\Documents\Tasks\AmaToRa\AmaToRa\obj\Debug\AmaToRa.csproj.CopyComplete
