@@ -34,13 +34,8 @@ namespace AmaToRa {
             }catch(Exception ex) {
                 Console.WriteLine(ex);
             }
+            textBox1.Text = "";
         }
-
-
-
-
-
-
 
         private Bitmap getImageFromUrl(string img_url) {
             HttpWebRequest myRequest = (HttpWebRequest)WebRequest.Create(img_url);
@@ -61,7 +56,7 @@ namespace AmaToRa {
                 HttpWebResponse myResponse = (HttpWebResponse)myRequest.GetResponse();
                 System.Drawing.Bitmap bmp = new System.Drawing.Bitmap(myResponse.GetResponseStream());
                 myResponse.Close();
-                bmp = ResizeImage(bmp, 100, 100);
+                bmp = ResizeImage(bmp, 500, 500);
                 string filename = "";
                 // 現在日時を表すDateTimeオブジェクトを取得
                 DateTime targetTime = DateTime.Now;
@@ -126,7 +121,7 @@ namespace AmaToRa {
 
             //SaveFileDialogクラスのインスタンスを作成
             SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "hogehoge.csv";
+            sfd.FileName = "a.csv";
             sfd.Filter = "CSVファイル(*.csv)|*.csv";
             sfd.Title = "保存先のファイルを選択してください";
                         //ダイアログを表示する
@@ -162,9 +157,9 @@ namespace AmaToRa {
                     }
 
 
-                    sw.WriteLine(title+","+detail+","+val.pic_location[0]+","+val.pic_location[1]+","+val.pic_location[2]+","+val.pic_location[3]
+                    sw.WriteLine(title.Replace(","," ")+","+detail.Replace(","," ")+","+val.pic_location[0]+","+val.pic_location[1]+","+val.pic_location[2]+","+val.pic_location[3]
                         +","+ "スマホ/家電/カメラ" + ","+ "スマートフォン/携帯電話" + ","+ "スマートフォン本体"
-                        + ","+""+","+""+","+ "送料込み(あなたが負担)"+","+"未定"+","+ "新品、未使用"+","+"大阪府"+","+ "1～2日で発送"+","+val.price.ToString()+","+val.amazon_url);
+                        + ","+"なし"+","+""+","+ "送料込み(あなたが負担)"+","+"未定"+","+ "新品、未使用"+","+"大阪府"+","+ "1～2日で発送"+","+(val.price+numericUpDown1.Value).ToString()+","+val.amazon_url);
 
                     loop_count += 1;
                 }
@@ -176,10 +171,12 @@ namespace AmaToRa {
                 return true;
         }
 
+        private void button3_Click(object sender, EventArgs e) {
+            data_list.Clear();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Refresh();
 
-
-
-
+        }
     }
     
 }

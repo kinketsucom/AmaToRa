@@ -53,7 +53,7 @@ namespace AmaToRa.API {
             //タイトル
             string xpath = "//*[@id='productTitle']";
             var node = doc.DocumentNode.SelectSingleNode(xpath);
-            data.title = node.InnerHtml.Replace("\n", "").Replace("  ","");
+            data.title = node.InnerHtml.Replace("\n", "").Replace("  ", "");
             if (data.title.Length > 40) { data.title_over_flag = (data.title.Length - 40).ToString(); }
             //メイン画像
             xpath = "//*[@id='landingImage']";
@@ -62,26 +62,34 @@ namespace AmaToRa.API {
             //サブ画像
             xpath = "//*[@class='a-button a-button-thumbnail a-button-toggle']/span/span/img";
             var collection = doc.DocumentNode.SelectNodes(xpath);
-            for(int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
                 if (collection.Count <= i) break;
                 if (!string.IsNullOrEmpty(collection[i].Attributes["src"].Value)) {
-                    data.pic_url[i+1] = collection[i].Attributes["src"].Value.Replace("SS40","SL1000");
+                    data.pic_url[i + 1] = collection[i].Attributes["src"].Value.Replace("SS40", "SL1000");
                 }
             }
             xpath = "//*[@id='priceblock_ourprice']";
             node = doc.DocumentNode.SelectSingleNode(xpath);
-            var price = node.InnerHtml.Replace("\n", "").Replace("￥", "").Replace(" ","").Replace(",","");
+            if (node == null) {
+                xpath = "//*[@id='priceblock_saleprice']";
+                node = doc.DocumentNode.SelectSingleNode(xpath);
+            }
+            var price = node.InnerHtml.Replace("\n", "").Replace("￥", "").Replace(" ", "").Replace(",", "");
             data.price = int.Parse(price);
             //商品説明
             xpath = "//*[@id='feature-bullets']/ul/li";
             collection = doc.DocumentNode.SelectNodes(xpath);
-            collection.RemoveAt(0);
-            collection.RemoveAt(0);
-            foreach(var val in collection) {
-                data.detail += val.InnerHtml.Replace("<span class=\"a-list-item\"> ","").Replace("\n","").Replace("\t","");
-            }
-            if (data.detail.Length > 1000) { data.detail_over_flag = (data.detail.Length - 1000).ToString(); }
+            if (collection != null) {
+                if (collection.Count >= 2) {
+                    collection.RemoveAt(0);
+                    collection.RemoveAt(0);
 
+                    foreach (var val in collection) {
+                        data.detail += val.InnerHtml.Replace("<span class=\"a-list-item\"> ", "").Replace("\n", "").Replace("\t", "").Replace("</span>","");
+                    }
+                    if (data.detail.Length > 1000) { data.detail_over_flag = (data.detail.Length - 1000).ToString(); }
+                }
+            }
 
             return data;
         }
